@@ -1,6 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthOptions } from "next-auth";
-import { findUserByCredentials } from "./ีusers/user.service";
+import { findUserByCredentials } from "./ีusers-module/user.service";
 
 export const authOptions: NextAuthOptions = {
   providers: [
