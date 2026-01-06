@@ -13,11 +13,11 @@ export const authOptions: NextAuthOptions = {
                 // Admin
                 if (
                     credentials?.username === "admin" &&
-                    credentials?.password === "1234"
+                    credentials?.password === "123"
                 ) {
                     return {
                         id: "1",
-                        name: "Boss Admin",
+                        name: "Admin",
                         email: "admin@test.com",
                     };
                 }
@@ -25,11 +25,11 @@ export const authOptions: NextAuthOptions = {
                 // Normal User
                 if (
                     credentials?.username === "user" &&
-                    credentials?.password === "1234"
+                    credentials?.password === "123"
                 ) {
                     return {
                         id: "2",
-                        name: "Normal User",
+                        name: "User",
                         email: "user@test.com",
                     };
                 }
