@@ -6,12 +6,13 @@ export const authOptions: NextAuthOptions = {
         Credentials({
             name: "Credentials",
             credentials: {
-                email: { label: "Email", type: "text" },
+                username: { label: "Username", type: "text" },
                 password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
+                // Admin
                 if (
-                    credentials?.email === "admin@test.com" &&
+                    credentials?.username === "admin" &&
                     credentials?.password === "1234"
                 ) {
                     return {
@@ -20,8 +21,22 @@ export const authOptions: NextAuthOptions = {
                         email: "admin@test.com",
                     };
                 }
+
+                // Normal User
+                if (
+                    credentials?.username === "user" &&
+                    credentials?.password === "1234"
+                ) {
+                    return {
+                        id: "2",
+                        name: "Normal User",
+                        email: "user@test.com",
+                    };
+                }
+
                 return null;
-            },
+            }
+
         }),
     ],
     pages: {
