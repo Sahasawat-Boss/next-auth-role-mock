@@ -2,13 +2,17 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const searchParams = useSearchParams();
+    const error = searchParams.get("error");
+
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // ❗ กัน reload หน้า
+        e.preventDefault();
         await signIn("credentials", {
             username,
             password,
@@ -20,6 +24,13 @@ export default function LoginPage() {
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white p-6 rounded-xl shadow-md w-80 text-black">
                 <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
+
+                {/* 🔔 Error Notice */}
+                {error === "CredentialsSignin" && (
+                    <div className="mb-4 rounded bg-red-100 text-red-700 text-sm p-2 text-center">
+                        ❌ Invalid credentials.
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit}>
                     <input
@@ -45,8 +56,7 @@ export default function LoginPage() {
                     </button>
                 </form>
 
-                <p className="text-xs text-center mt-3">user</p>
-                <p className="text-xs text-center">123</p>
+                <p className="text-xs text-center mt-3">admin / 1234</p>
             </div>
         </div>
     );
